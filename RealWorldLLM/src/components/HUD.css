@@ -1,0 +1,110 @@
+.hud-container {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  font-family: 'Share Tech Mono', monospace;
+  color: #00ddcc;
+  padding: 20px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* TOP HEADER */
+.tactical-header {
+  display: flex; justify-content: space-between;
+  font-size: 10px; letter-spacing: 2px;
+  border-bottom: 1px solid rgba(0, 255, 200, 0.2);
+  padding-bottom: 5px; margin-bottom: 15px;
+}
+.blink-dot { color: #ff3300; margin-right: 8px; animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* PANELS */
+.hud-top-row { display: flex; justify-content: space-between; align-items: flex-start; }
+
+.cyber-panel, .tactical-search {
+  pointer-events: auto;
+  background: rgba(0, 15, 30, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 200, 0.3);
+  box-shadow: inset 0 0 15px rgba(0, 255, 200, 0.1);
+  padding: 10px 15px;
+}
+
+.left, .right { min-width: 260px; }
+
+.panel-header-toggle {
+  cursor: pointer; font-size: 12px; color: #fff;
+  display: flex; align-items: center; gap: 10px;
+}
+.panel-header-toggle:hover { color: #00ffcc; }
+
+.scroll-list { margin-top: 12px; max-height: 300px; overflow-y: auto; }
+.category { font-size: 9px; opacity: 0.4; margin: 12px 0 6px 0; letter-spacing: 1px; }
+.list-item { padding: 6px 0; cursor: pointer; font-size: 11px; display: flex; gap: 8px; }
+.list-item:hover, .list-item.active { color: #00ffcc; background: rgba(0, 255, 200, 0.05); }
+.marker { color: #00ffcc; }
+.reset { color: #ff4433; margin-top: 10px; border-top: 1px dashed rgba(255,0,0,0.2); }
+
+.tactical-search .search-form { display: flex; align-items: center; gap: 10px; font-size: 11px; }
+.tactical-search input {
+  background: rgba(0, 40, 80, 0.4); border: 1px solid #004466; color: #00ffcc;
+  padding: 4px 8px; width: 70px; font-family: inherit;
+}
+.tactical-search button {
+  background: #00aaff; color: #000; border: none; padding: 4px 12px;
+  font-family: inherit; font-weight: bold; cursor: pointer;
+}
+
+.button-group { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.cyber-button {
+  background: transparent; border: 1px solid #006688; color: #00ccff;
+  padding: 8px; cursor: pointer; font-family: inherit; font-size: 11px;
+}
+.cyber-button.active { background: #00aaff; color: #000; border-color: #00aaff; }
+
+/* RS OVERLAYS */
+.rs-spec-overlay {
+  position: absolute; left: 20px; top: 35%;
+  width: 240px; padding: 15px;
+  background: rgba(0, 20, 40, 0.8); border-left: 3px solid #00ffcc;
+  pointer-events: auto;
+}
+.spec-title { font-size: 11px; margin-bottom: 12px; color: #00ffcc; letter-spacing: 1px; }
+.spec-grid { display: flex; flex-direction: column; gap: 8px; }
+.spec-row { display: flex; justify-content: space-between; font-size: 10px; }
+.spec-row label { opacity: 0.5; }
+.scan-line-anim {
+  height: 1px; background: #00ffcc; margin-top: 15px;
+  width: 100%; opacity: 0.5; animation: scan 2s infinite linear;
+}
+@keyframes scan { 0% { transform: scaleX(0); } 50% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+
+.visual-feed-overlay {
+  position: absolute; right: 20px; top: 35%;
+  width: 300px; padding: 10px;
+  background: rgba(0, 10, 20, 0.9); border: 1px solid rgba(0, 255, 200, 0.4);
+  pointer-events: auto;
+}
+.feed-header { font-size: 10px; margin-bottom: 8px; color: #88ffcc; }
+.feed-frame { position: relative; width: 100%; height: 180px; background: #000; overflow: hidden; }
+.feed-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+.feed-reticle {
+  position: absolute; top: 50%; left: 50%; width: 40px; height: 40px;
+  border: 1px solid rgba(0, 255, 200, 0.5); transform: translate(-50%, -50%);
+}
+.feed-reticle::before { content: ''; position: absolute; top: 50%; left: -5px; width: 50px; height: 1px; background: rgba(0,255,200,0.3); }
+.feed-reticle::after { content: ''; position: absolute; left: 50%; top: -5px; width: 1px; height: 50px; background: rgba(0,255,200,0.3); }
+.feed-telemetry { position: absolute; bottom: 5px; left: 5px; font-size: 8px; color: #00ffcc; text-shadow: 0 0 5px #000; }
+
+/* TICKER */
+.hud-bottom-ticker {
+  background: rgba(0, 10, 20, 0.8); padding: 8px 20px;
+  border-top: 1px solid rgba(0, 255, 200, 0.2);
+  display: flex; gap: 20px; font-size: 10px;
+  pointer-events: auto; overflow: hidden;
+}
+.ticker-label { color: #00ffcc; font-weight: bold; }
+.ticker-content { white-space: nowrap; opacity: 0.7; animation: slide 30s linear infinite; }
+@keyframes slide { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
